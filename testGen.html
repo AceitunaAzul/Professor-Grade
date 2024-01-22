@@ -1,0 +1,59 @@
+{% extends "formats.html" %}
+{% block content %}
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="favicon.png" alt="Professor Grade" width="30" height="24"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" id="navExam" aria-current="page" href="#">Exam</a>
+          <a class="nav-link active" id="navEssay" aria-current="page" href="#">Essay</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: middle; height: 100vh;">
+  <!-- Test form -->
+  <form action="/test" method="post" id="test-form" style="display: none; text-align: center; margin-top: 20px;">
+    <h1>Generate Exam</h1>
+    <div><input class="message" type="text" placeholder="Subject" name="text"></div>
+    <div><input class="message" type="number" placeholder="Grade" name="grade"></div>
+    <div><input class="message" type="number" placeholder="Number of questions" name="n_questions"></div>
+    <div><button class="button" type="submit" name="send">Create exam</button></div>
+  </form>
+
+  <!-- Essay form -->
+  <form action="/essay" id="essay-form" method="post" style="display: none; text-align: center; margin-top: 20px;">
+    <h1>Generate Essay</h1>
+    <div><input class="message" type="text" placeholder="Subject" name="text"></div>
+    <div><input class="message" type="number" placeholder="Grade" name="grade"></div>
+    <div><input class="message" type="number" placeholder="Number of questions" name="n_questions"></div>
+    <div><button class="button" type="submit" name="send">Create essay</button></div>
+  </form>
+
+  <form action="/" style="position: fixed; bottom: 0; left: 0; margin: 20px;">
+    <button class="button" type="submit" name="back">Back to Menu</button>
+  </form>
+</div>
+
+<script>
+  // Show the form when a nav link is clicked
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      const id = link.getAttribute("id");
+      console.log("Clicked link with ID:", id);
+      if (id === "navEssay") {
+        document.getElementById("test-form").style.display = "none";
+        document.getElementById("essay-form").style.display = "block";
+      } else if (id === "navExam") {
+        document.getElementById("test-form").style.display = "block";
+        document.getElementById("essay-form").style.display = "none";
+      }
+    });
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <title>Professor Grade</title>
+  <style>
+    body {
+      background-color: #006994;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .button-red {
+      background-color: #972EFF;
+      border: none;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .button-red:hover {
+      background-color: #cc0000;
+    }
+    .button {
+      background-color: #00b7eb;
+      border: none;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 5px 5px 5px #000000;
+    }
+    .button:hover {
+      background-color: #4169e1;
+    }
+    .button1 {
+      background-color: #004f98;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .button2 {
+      background-color: #004f98;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .button3 {
+      background-color: #004f98;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    .button4 {
+      background-color: #004f98; 
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .chatbox {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 5px 5px 5px #888888;
+      padding: 20px;
+      width: 70%;
+      height: 70%;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
+    .message {
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+      max-width: 80%;
+      align-self: flex-start;
+    }
+    .message.right {
+      background-color: #4CAF50;
+      color: #fff;
+      align-self: flex-end;
+    }
+    nav {
+      background-color: #002f94;
+      color: #7086ff;
+      padding: 10px;
+    }
+
+    .navbar-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .test-content {
+      padding: 20px;
+    }
+    .input {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .input input {
+      flex-grow: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    .input button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .input button:hover {
+      background-color: #3e8e41;
+    }
+
+    /* CSS styles for the loading screen */
+    .loading-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f2f2f2;
+        z-index: 9999;
+    }
+
+    .loading-spinner {
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    ul.flashes {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+    }
+
+    li.flash-message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f8d7da; /* Light red background color */
+      color: #721c24; /* Dark red text color */
+    }
+    
+  </style>
+
+  <script>
+      // JavaScript code to hide the loading screen after the page finishes loading
+      window.addEventListener("load", function() {
+          // Delay the hiding of the loading screen for 1 second (1000 milliseconds)
+          setTimeout(function() {
+              var loadingScreen = document.getElementById("loading-screen");
+              if (loadingScreen) {
+                  loadingScreen.style.display = "none";
+              }
+          }, 1000);
+      });
+  </script>
+  
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

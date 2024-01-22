@@ -1,0 +1,23 @@
+{% extends "formats.html" %}
+{% block content %} 
+    <div class="container">
+        <div class="chatbox">
+          <div class="message">{{ message }}</div>
+        </div>
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    <form action="/" style="position: fixed; bottom: 0; left: 0;">
+        <button class="button" type="submit" name="back">Back to Menu</button>
+    </form>
+    <script>
+        function showLoadingMessage() {
+            var textInput = document.getElementsByName("text");
+            textInput.value = "Generating response...";
+            textInput.disabled = true;
+            var form = document.getElementsByTagName("form");
+            form.submit();
+        }
+    </script>
+{% endblock %}

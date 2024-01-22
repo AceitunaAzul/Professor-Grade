@@ -1,0 +1,23 @@
+{% extends "formats.html" %}
+{% block content %} 
+    <div class="container">
+        <div class="chatbox">
+            {% for messagePair in history %}
+                <div class="message right">{{ messagePair[0] }}</div>
+                <div class="message">{{ messagePair[1] | safe }}</div>
+            {% endfor %}
+        </div>
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="input">
+            <button onclick="window.print();">Print Screen</button>
+        </div>
+    </div>
+    <form action="/" style="position: fixed; bottom: 0; left: 0;">
+        <button class="button" type="submit" name="back">Back to Menu</button>
+    </form>
+    <form action="/clearH" method="post" style="position: fixed; bottom: 0; right: 0;">
+        <button class="button-red" type="submit" name="clear">Clear History</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "formats.html" %}
+{% block content %} 
+    <div class="container">
+        <div class="chatbox">
+            {% for messagePair in history %}
+                <div class="message">{{ messagePair[0] }}</div>
+                <div class="message right">{{ messagePair[1] | safe }}</div>
+            {% endfor %}
+        </div>
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="input">
+            <form action="/sendPrompt" method="post" onsubmit="showLoadingMessage(); return false;">
+                <input type="text" placeholder="Type your message here..." name="text">
+                <button type="submit" name="send">Send</button>
+            </form>
+        </div>
+    </div>
+    <form action="/" style="position: fixed; bottom: 0; left: 0;">
+        <button class="button" type="submit" name="back">Back to Menu</button>
+    </form>
+    <form action="/clearH" method="post" style="position: fixed; bottom: 0; right: 0;">
+        <button class="button-red" type="submit" name="clear">Clear History</button>
+    </form>
+    <div class="input" style="position: fixed; bottom: 50%; right: 10px;">
+        <button onclick="window.print();">Print Screen</button>
+    </div>
+    <script>
+        function showLoadingMessage() {
+            var textInput = document.getElementsByName("text");
+            textInput.value = "Generating response...";
+            textInput.disabled = true;
+            var form = document.getElementsByTagName("form");
+            form.submit();
+        }
+    </script>
+{% endblock %}

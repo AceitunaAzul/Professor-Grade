@@ -1,0 +1,43 @@
+{% extends "formats.html" %}
+{% block content %} 
+    <nav>
+        {% for test in tests %}
+            <a href="#test{{ test.test_id }}" class="navbar-link" data-test-index="{{ test.test_id }}">{{ test.test_name or 'Test ' ~ test.test_id }}</a>
+        {% endfor %}
+    </nav>
+
+    <!-- Content Section -->
+    <div>
+        {% for test in tests %}
+            <section id="test{{ loop.index }}">
+                <h2 id="testName{{ loop.index }}">{{ test.name or 'Test ' ~ loop.index }}</h2>
+                <div class="chatbox">
+                    <div class="message">{{ test | safe }}</div>
+                </div>
+            </section>
+            <div class="input" style="margin-left: 20%;">
+                <button onclick="window.print();">Print Screen</button>
+            </div>
+        {% endfor %}
+    </div>
+    <form action="/" style="position: fixed; bottom: 0; left: 0;">
+        <button class="button" type="submit" name="back">Back to Menu</button>
+    </form>
+
+    <script>
+        function renameTest(link) {
+            var index = link.dataset.testIndex;
+            var testName = prompt("Enter the new name for Test " + index);
+            if (testName !== null && testName.trim() !== "") {
+                document.getElementById("testName" + index).textContent = testName;
+            }
+        }
+
+        var navbarLinks = document.querySelectorAll('.navbar-link');
+        navbarLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                renameTest(link);
+            });
+        });
+    </script>
+{% endblock %}

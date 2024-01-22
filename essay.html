@@ -1,0 +1,46 @@
+{% extends "formats.html" %}
+{% block content %} 
+    <style>
+        .input form {
+            display: flex;
+            align-items: center;
+        }
+
+        .input textarea {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .input button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="chatbox">
+            <div class="message">{{ question }}</div>
+        </div>
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="input">
+            <form action="/essaySubmit" method="post" onsubmit="showLoadingMessage(); return false;">
+                <textarea placeholder="Type your essay here..." name="textarea" rows="8" cols="80"></textarea>
+                <button type="submit" name="send">Send</button>
+            </form>
+        </div>
+    </div>
+    <form action="/" style="position: fixed; bottom: 0; left: 0;">
+        <button class="button" type="submit" name="back">Back to Menu</button>
+    </form>
+    <script>
+        function showLoadingMessage() {
+            var textInput = document.getElementsByName("text")[0];
+            textInput.value = "Generating response...";
+            textInput.disabled = true;
+            var form = document.getElementsByTagName("form")[0];
+            form.submit();
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "formats.html" %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center;">
+  <h1>Login</h1>
+</div>
+<div id="login" style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+  <form action="/login" method="post">
+    <div><input class="message" type="text" name="username" placeholder="Username"></div>
+    <div><input class="message" type="password" name="password" placeholder="Password"></div>
+    <button class="button">Login</button>
+  </form>
+</div>
+<div>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+          <li class="flash-message">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+<form action="/" style="position: fixed; bottom: 0; left: 0;">
+    <button class="button" type="submit" name="back">Back to Menu</button>
+</form>
+
+<script src="auth.js"></script>
+{% endblock %}

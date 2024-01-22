@@ -1,0 +1,31 @@
+{% extends "formats.html" %}
+{% block content %}
+<style>
+  /* Add custom CSS styles for the text inputs and message right class */
+  input[type="text"] {
+    font-size: 16px; /* Increase the font size for text inputs */
+    width: 1000px; /* Set the width of the text inputs */
+  }
+  .message.right {
+    font-size: 20px; /* Increase the font size for the messages with the class "right" */
+  }
+</style>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <h1>Personalize</h1>
+</div>
+<div class="message right">Enter the feedback you've gotten. It can be generall or in response to a specific assessment or exercise. If it is in response to something specific please enter the problem in the second box. I will take this into account and help you improve!!!</div>
+<div id="feedback" style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+  <form action="/personalize" method="post">
+    <div><input type="text" class="message" placeholder="Your feedback..." name="feedback"></div>
+    <div><input type="text" class="message" placeholder="The assessment or exercise here. (This is optional)" name="assessment"></div>
+    <div><button type="submit" class="button">Submit</button></div>
+  </form>
+</div>
+<form action="/clearP" method="post" style="position: fixed; bottom: 0; right: 0;">
+    <button class="button-red" type="submit" name="clear">Clear specialization</button>
+</form>
+<form action="/" style="position: fixed; bottom: 0; left: 0;">
+    <button class="button" type="submit" name="back">Back to Menu</button>
+</form>
+
+{% endblock %}
