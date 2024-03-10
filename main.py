@@ -145,7 +145,7 @@ def auth():
 #----* Chatting with Professor Grade *----#
 
 # Log in to huggingface and grant authorization to huggingchat
-sign = Login("oliver.hurtig072@gmail.com", "tuCE9GPW:HevUPb")
+sign = Login()
 cookies = sign.login()
 
 # Save cookies to the local directory
